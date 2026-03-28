@@ -1,0 +1,1 @@
+{\n  "name": "prime-academy-bur-assistant",\n  "version": "1.0.0",\n  "description": "Prime Academy BUR Assistant",\n  "main": "index.js",\n  "scripts": {\n    "test": "echo \"No tests configured\"",\n    "build": "echo \"No build configured\""\n  },\n  "keywords": [],\n  "author": "",\n  "license": "ISC",\n  "dependencies": {}\n}
