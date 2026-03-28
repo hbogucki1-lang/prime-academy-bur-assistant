@@ -1,0 +1,66 @@
+﻿name: Setup Ruflo In All Apps
+
+on:
+  workflow_dispatch:
+
+jobs:
+  setup:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        repo: [dotacje-landing-boss, prime-propertiespl, CLAWDBOT, prime-academy-bur-assistant]
+    steps:
+      - name: Checkout ${{ matrix.repo }}
+        uses: actions/checkout@v3
+        with:
+          repository: hbogucki1-lang/${{ matrix.repo }}
+          token: ${{ secrets.GH_TOKEN }}
+
+      - name: Create workflow directory
+        run: mkdir -p .github/workflows
+
+      - name: Create Ruflo CI workflow
+        run: |
+          cat > .github/workflows/ruflo.yml <<'EOF'
+          name: Ruflo CI
+          on:
+            push:
+                    pull_request:
+              branches: [main]
+          jobs:
+            ruflo:
+              runs-on: ubuntu-latest
+              steps:
+                - uses: actions/checkout@v3
+                - uses: actions/setup-node@v4
+                  with:
+                    node-version: '20'
+                - run: npm install -g ruflo
+                - run: ruflo diagnose --all
+          EOF
+
+      - name: Update README
+        run: |
+          if ! grep -q "Ruflo" README.md; then
+            cat >> README.md << 'EOF'
+
+          ## 🤖 Ruflo - Wieloagentowa Orkiestracja AI
+          
+          ### Instalacja na Windows
+          1. Zainstaluj Node.js: https://nodejs.org/
+          2. Zainstaluj Ruflo: curl -fsSL https://cdn.jsdelivr.net/gh/ruvnet/ruflo@main/scripts/install.sh | bash -s -- --full
+          3. Weryfikacja: ruflo --help
+          
+          ### Dokumentacja
+          - [GitHub Ruflo](https://github.com/ruvnet/ruflo)
+          - [Getting Started](https://deepwiki.com/ruvnet/ruflo/2-getting-started)
+          EOF
+          fi
+
+      - name: Commit and push
+        run: |
+          git config --global user.email "action@github.com"
+          git config --global user.name "GitHub Action"
+          git add .
+          git commit -m "Automated: Ruflo setup" --allow-empty
+          git push
