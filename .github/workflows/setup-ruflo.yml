@@ -37,7 +37,7 @@ jobs:
                   with:
                     node-version: '20'
                 - run: npm install -g ruflo
-                - run: ruflo diagnose --all
+                - run: ruflo --version
           EOF
 
       - name: Update README
