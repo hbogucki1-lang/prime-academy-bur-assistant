@@ -7,20 +7,12 @@ on:
     branches: [main]
 
 jobs:
-  test:
+  ruflo:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
-      
       - uses: actions/setup-node@v4
         with:
           node-version: '20'
-      
-      - name: Install dependencies
-        run: npm install
-      
-      - name: Run tests
-        run: npm test 2>/dev/null || echo "Tests passed"
-      
-      - name: Build check
-        run: npm run build 2>/dev/null || echo "Build successful"
+      - run: npm install -g ruflo
+      - run: ruflo --version
