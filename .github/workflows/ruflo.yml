@@ -1,0 +1,19 @@
+name: Ruflo CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  ruflo:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - run: npm install -g ruflo
+      - run: ruflo --version
+      - run: ruflo diagnose --all
