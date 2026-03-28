@@ -1,2 +1,14 @@
-{"name": "prime-academy-bur-assistant", "version": "1.0.0", "description": "Prime Academy BUR Assistant", "main": "index.js", "scripts": {"test": "echo \"No tests configured\"
-, "build": "echo \"No build configured\""}, "keywords": [], "author": "", "license": "ISC", "dependencies": {}}
+{
+  "name": "prime-academy-bur-assistant",
+  "version": "1.0.0",
+  "description": "Prime Academy BUR Assistant",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"No tests configured\"",
+    "build": "echo \"No build configured\""
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {}
+}
