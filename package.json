@@ -5,3 +5,10 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"No tests configured\"",
+    "build": "echo \"No build configured\""
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {}
+}
