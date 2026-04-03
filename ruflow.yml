@@ -3,7 +3,8 @@
 applications:
   - name: dotacje-landing-boss
     agent:
-      type: default
+      type: prime-academy-bur-assistant
+      source: hbogucki1-lang/prime-academy-bur-assistant
       memory:
         size: 512MB
       ci_cd:
